@@ -1,0 +1,14 @@
+package ${packageName}.service;
+
+import com.flaginfo.lightning.common.BaseService;
+
+/**
+ * 
+ * @desc ${entityNameCN}service接口
+ *
+ * @author ${author}
+ * @${date}
+ */
+public interface ${className}Service extends BaseService {
+    
+}

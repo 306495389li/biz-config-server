@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.flaginfo.lightning.config.mapper.QueryChannelAccessnumMapper">
+	<select id="query" resultType="java.util.Map" parameterType="java.util.Map">
+        select 
+            t1.carrier "carrier",
+            t1.province_division "provinceDivision",
+            t1.channel_division "channelDivision",
+            t2.accessnum "accessnum",
+            t2.cf_name "cfName",
+            t2.description "description"
+        from CF_CONFIG_CHANNEL t1
+        left join CF_CONFIG_ACCESSNUM t2
+        on t1.cf_config_accessnum_id = t2.cf_config_accessnum_id and t1.ad_client_id=t2.ad_client_id
+        where t1.cf_config_accessnum_id is not null
+        <if test="adClientId != null">
+        and t1.ad_client_id = #{adClientId}
+        </if>
+        <if test="carrier != null">
+        and t1.carrier = #{carrier}
+        </if>
+        <if test="provinceDivision != null">
+        and t1.province_division = #{provinceDivision}
+        </if>
+        <if test="channelDivision != null">
+        and t1.channel_division = #{channelDivision}
+        </if>
+	</select>
+</mapper>
